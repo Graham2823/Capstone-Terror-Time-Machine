@@ -8,8 +8,9 @@ const HomePage = () => {
 	return (
 		<>
 			<div>
-				<h1>HomePage</h1>
+				<h1>Terror Time Machine</h1>
 				<h1>User: {user}</h1>
+				<h2>Movies:</h2>
 			</div>
 		</>
 	);
