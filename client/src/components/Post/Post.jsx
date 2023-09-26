@@ -4,7 +4,7 @@ import { UserContext } from "../../context/userContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
-import './Forum.css';
+import './Post.css';
 
 function ForumPostList({ posts, setPosts }) {
   const reversedPosts = [...posts].reverse();
