@@ -1,25 +1,48 @@
-import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-const ForumPostDetails = () => {
-    const {postID} = useParams()
-    const [postDetails, setPostDetails] = useState([])
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import ForumReplyForm from "../../components/ForumReply/ForumForm";
+import ForumReplyCard from "../../components/ForumReplyCard/ForumReplyCard";
+import ForumReviewCard from "../../components/ForumReviewCard/ForumReviewCard";
 
-    useEffect(()=>{
-        axios.get(`http://localhost:3001/api/getOnePost/${postID}`)
+const ForumPostDetails = () => {
+  const [postDetails, setPostDetails] = useState([]);
+  const [forumReviewPosted, setForumReviewPosted] = useState(false);
+  const { postID } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/getOnePost/${postID}`)
       .then((response) => {
         const reversedReplies = response.data.Replies.reverse();
-      setPostDetails({ ...response.data, Replies: reversedReplies });
+        setPostDetails({ ...response.data, Replies: reversedReplies });
       })
       .catch((error) => {
         console.log(error);
       });
-    },[])
+  }, [forumReviewPosted]);
 
-    console.log(postDetails)
+  console.log(postDetails);
+
   return (
-    <div>Post Details for :{postID}</div>
-  )
-}
+    <div>
+      Post Details for :{postID}
+      {postDetails && Object.keys(postDetails).length > 0 && (
+        <>
+          <ForumReviewCard postDetails={postDetails} />
+          <ForumReplyForm
+            postDetails={postDetails}
+            setForumReviewPosted={setForumReviewPosted}
+          />
+          <ForumReplyCard
+            postDetails={postDetails}
+            setPostDetails={setPostDetails}
+            reviewID={postID}
+          />
+        </>
+      )}
+    </div>
+  );
+};
 
-export default ForumPostDetails
+export default ForumPostDetails;
