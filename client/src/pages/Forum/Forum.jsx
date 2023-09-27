@@ -9,30 +9,33 @@ import './Forum.css'
 function ForumPage() {
   const [postContent, setPostContent] = useState("");
   const [forumPosts, setForumPosts] = useState([]);
+  const [postMade, setPostMade] = useState(false)
   const { user, username } = useContext(UserContext);
 
 useEffect(()=>{
+  setPostMade(false)
   axios
-			.get(`http://localhost:3001/api/getPosts`)
-			.then((response) => {
-				setForumPosts(response.data);
-			})
-			.catch((error) => {
-				console.error('Error fetching data:', error);
-			});
-},[])
+  .get(`http://localhost:3001/api/getPosts`)
+  .then((response) => {
+    setForumPosts(response.data);
+  })
+  .catch((error) => {
+    console.error('Error fetching data:', error);
+  });
+},[postMade])
 
 
-  const handlePostSubmit = async() => {
-    const requestData = {
-      uid: user.uid,
-      username: username,
-      postText: postContent
-    };
-    const response = await axios.post(
-      'http://localhost:3001/api/createPost',
-      requestData
+const handlePostSubmit = async() => {
+  const requestData = {
+    uid: user.uid,
+    username: username,
+    postText: postContent
+  };
+  const response = await axios.post(
+    'http://localhost:3001/api/createPost',
+    requestData
     );
+    setPostMade(true)
     console.log(response.data)
     setForumPosts([requestData, ...forumPosts]);
     setPostContent("");
