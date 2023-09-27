@@ -26,7 +26,6 @@ const ForumPostDetails = () => {
 
   return (
     <div>
-      Post Details for :{postID}
       {postDetails && Object.keys(postDetails).length > 0 && (
         <>
           <ForumReviewCard postDetails={postDetails} />
