@@ -36,7 +36,7 @@ const ForumPostDetails = () => {
           <ForumReplyCard
             postDetails={postDetails}
             setPostDetails={setPostDetails}
-            reviewID={postID}
+            postID={postID}
           />
         </>
       )}

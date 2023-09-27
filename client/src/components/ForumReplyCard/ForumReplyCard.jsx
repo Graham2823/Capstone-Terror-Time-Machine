@@ -9,7 +9,7 @@ const ForumReplyCard = ({ postDetails, setPostDetails, postID }) => {
 
   const handleDeleteReply = (forumReplyID) => {
     axios
-      .delete(`http://localhost:3001/api/deleteReply/${postID}/${forumReplyID}`)
+      .delete(`http://localhost:3001/api/deletePostReply/${postID}/${forumReplyID}`)
       .then((response) => {
         console.log('Reply Deleted');
         const updatedReplies = postDetails.Replies.filter(
@@ -41,7 +41,7 @@ const ForumReplyCard = ({ postDetails, setPostDetails, postID }) => {
                 onClick={() => handleDeleteReply(forumReply._id)}
                 style={{ width: '50px' }}
               >
-                {/* <FontAwesomeIcon icon={faTrash} /> */}
+                <FontAwesomeIcon icon={faTrash} />
               </button>
             )}
           </div>
