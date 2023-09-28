@@ -19,6 +19,7 @@ import { sortedMovies } from "../controllers/sortedMovies";
 import { createForumPostReply } from "../controllers/createForumPostReply";
 import { getOnePost } from "../controllers/getOnePost";
 import { deletePostReply } from "../controllers/deletePostReply";
+import { createReviewReaction } from "../controllers/createReviewReaction";
 
 const router = Router();
 
@@ -51,6 +52,9 @@ router.route('/getUserPosts/:uid').get(getUserPosts)
 router.route('/deletePost/:uid/:postID').delete(deletePost)
 router.route('/getOnePost/:postID').get(getOnePost)
 router.route('/deletePostReply/:postID/:postReplyID').delete(deletePostReply)
+
+//reactions
+router.route('/reviewReaction').post(createReviewReaction)
 
 
 export default router;

@@ -13,6 +13,8 @@ const MovieDetail = () => {
 	const [movie, setMovie] = useState();
   	const [reviews, setReviews] = useState([])
 	const [reviewMade, setReviewMade] = useState(false)
+	const [reaction, setReaction] = useState('Like')
+
 	console.log("reviews", reviews)
 	
 	const handleReviewSubmit = (newReview) => {
@@ -29,7 +31,9 @@ const MovieDetail = () => {
 		.catch((error) => {
 			console.error('Error fetching data:', error);
 		});
-		
+	}, [id]);
+	
+	useEffect(()=>{
 		axios
 		.get(`http://localhost:3001/api/movieReviews/${id}`)
 		.then((response) => {
@@ -39,7 +43,9 @@ const MovieDetail = () => {
 		.catch((error) => {
 			console.error('Error fetching data:', error);
 		});
-	}, [id, reviewMade]);
+		
+	},[reviewMade, reaction])
+
 	return (
 		<div>
 			{movie && (
@@ -58,7 +64,7 @@ const MovieDetail = () => {
 						/>
 					</div>
 					<Reviews movieID={movie.id} onReviewSubmit={handleReviewSubmit} setReviewMade={setReviewMade}/>
-					<ReviewsList reviews={reviews} setReviews={setReviews} />
+					<ReviewsList reviews={reviews} setReviews={setReviews} setReaction= {setReaction}/>
 				</>
 			)}
 		</div>

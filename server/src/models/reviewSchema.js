@@ -36,6 +36,19 @@ const reviewSchema = new mongoose.Schema({
 			},
 		}
 	],
+	reactions:[
+		{
+			uid: {
+				type: String,
+				required: true
+			},
+			reaction:{
+				type: String,
+				required: true
+			}
+		}
+
+	]
 });
 
 module.exports = mongoose.model('Review', reviewSchema);
