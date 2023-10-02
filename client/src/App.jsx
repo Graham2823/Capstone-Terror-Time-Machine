@@ -13,6 +13,7 @@ import ForumPage from "./pages/Forum/Forum";
 import ForumPostDetails from "./pages/ForumPostDetail/ForumPostDetails";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import MyProfile from "./pages/MyProfile/MyProfile";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -78,6 +79,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <ForumPostDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/myProfile"
+            element={
+              <ProtectedRoute user={user}>
+                <MyProfile />
               </ProtectedRoute>
             }
           />
