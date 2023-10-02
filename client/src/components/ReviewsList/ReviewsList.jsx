@@ -5,7 +5,8 @@ import './ReviewsList.css';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ReviewsList = ({ reviews, setReviews, setReaction }) => {
   const navigate = useNavigate()
@@ -17,9 +18,11 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
 				console.log("review Deleted")
         const updatedReviews = reviews.filter((review) => review._id !== reviewID);
         setReviews(updatedReviews);
+        toast.success('Review Deleted!')
 			})
 			.catch((error) => {
-				console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
+        toast.error('Review Could Not Be Deleted: Try Again!')
 			});
   };
 
@@ -73,6 +76,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
  
     return (
     <div className="reviews-section">
+      <ToastContainer/>
       <h2>User Reviews</h2>
       <div className="review-container">
         {reviews.length > 0 && user ? (

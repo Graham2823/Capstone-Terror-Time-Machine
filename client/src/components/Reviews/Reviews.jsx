@@ -4,6 +4,8 @@ import './Reviews.css';
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Reviews( {movieID, onReviewSubmit, setReviewMade }) {
   const [commentText, setCommentText] = useState("");
@@ -37,10 +39,12 @@ function Reviews( {movieID, onReviewSubmit, setReviewMade }) {
     setCommentText(""); 
     setRating(0);
     setReviewMade(true)
+    toast.success('Review Posted!')
   };
 
   return (
     <div className="review-area">
+      <ToastContainer/>
       <h2 id="review">
         Leave a Review</h2>
       <div className="review-card">

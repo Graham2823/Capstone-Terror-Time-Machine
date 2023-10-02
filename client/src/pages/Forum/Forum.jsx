@@ -4,6 +4,8 @@ import { UserContext } from '../../context/userContext';
 import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 import './Forum.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function ForumPage() {
@@ -39,11 +41,13 @@ const handlePostSubmit = async() => {
     console.log(response.data)
     setForumPosts([requestData, ...forumPosts]);
     setPostContent("");
+    toast.success("Post Suuccessfully Added!")
   };
 
   return (
 
     <div>
+      <ToastContainer/>
       <h2 id="review">Create a Forum Post</h2>
       <div>
         <div className="post-card">
