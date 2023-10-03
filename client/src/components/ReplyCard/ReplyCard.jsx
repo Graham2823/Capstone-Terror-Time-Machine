@@ -25,10 +25,6 @@ const ReplyCard = ({reviewDetails, setReviewDetails, reviewID}) => {
             <div className="review" key={reply._id}>
               <div className="user-info">
                 <h4 className="user-name">User: {reply.username}</h4>
-                <div className="thumbs">
-                    <FontAwesomeIcon className="icon-up" icon={faThumbsUp} />
-                    <FontAwesomeIcon className="icon-down" icon={faThumbsDown} />
-                  </div>
               </div>
               {reply.text ? (
                 <>
