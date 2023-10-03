@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 function CreateUser() {
 	const [email, setEmail] = useState('');
@@ -71,6 +72,7 @@ function CreateUser() {
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<button onClick={handleSignup}>Sign Up</button>
+			<p><Link to={'/signin'}>Already have an account? Click here to sign in</Link></p>
 		</div>
 	);
 }
