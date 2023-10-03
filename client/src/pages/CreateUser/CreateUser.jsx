@@ -3,6 +3,9 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../../server/src/config/fireBase.config';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 function CreateUser() {
 	const [email, setEmail] = useState('');
@@ -30,14 +33,25 @@ function CreateUser() {
 			);
 			console.log('Successfully signed up:', user);
 			console.log('Backend response:', response.data);
-			navigate('/signin');
+			toast.success("User Successfully Created, Sign in to Continue!")
+			setTimeout(() => {
+				navigate('/signin');
+			}, 2000);
 		} catch (error) {
-			console.error('Error signing up:', error);
+			if (error.code === "auth/email-already-in-use") {
+				toast.error("Email already in use");
+			} else if (error.code === "auth/weak-password"){
+				toast.error("Password should be at least 6 characters");
+			}
+			else {
+				console.error('Error signing up:', error.code);
+			}
 		}
 	};
 
 	return (
 		<div>
+			<ToastContainer/>
 			<h2>Signup</h2>
 			<input
 				type='username'
@@ -58,6 +72,7 @@ function CreateUser() {
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<button onClick={handleSignup}>Sign Up</button>
+			<p><Link to={'/signin'}>Already have an account? Click here to sign in</Link></p>
 		</div>
 	);
 }

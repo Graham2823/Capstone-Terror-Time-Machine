@@ -1,7 +1,7 @@
 import User from "../models/userSchema";
 
 export const findUser = async (req, res, next) => {
-
+console.log('hit')
     try {
         const { uid } = req.params;
         console.log("uid", uid)
