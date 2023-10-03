@@ -16,17 +16,17 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
 
   const handleDeleteReview = (reviewID) => {
     axios
-			.delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
-			.then((response) => {
-				console.log("review Deleted")
+      .delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
+      .then((response) => {
+        console.log("review Deleted")
         const updatedReviews = reviews.filter((review) => review._id !== reviewID);
         setReviews(updatedReviews);
         toast.success('Review Deleted!')
-			})
-			.catch((error) => {
+      })
+      .catch((error) => {
         console.error('Error fetching data:', error);
         toast.error('Review Could Not Be Deleted: Try Again!')
-			});
+      });
   };
 
   const handleLike = async (reviewID) => {

@@ -37,28 +37,28 @@ const MyProfile = () => {
 
   const handleDeleteReview = (reviewID) => {
     axios
-			.delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
-			.then((response) => {
-				console.log("review Deleted")
+      .delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
+      .then((response) => {
+        console.log("review Deleted")
         const updatedReviews = userReviews.filter((review) => review._id !== reviewID);
         setUserReviews(updatedReviews);
-			})
-			.catch((error) => {
-				console.error('Error fetching data:', error);
-			});
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   };
 
   const handleDeletePost = (postID) => {
     axios
-			.delete(`http://localhost:3001/api/deletePost/${user.uid}/${postID}`)
-			.then((response) => {
-				console.log("Post Deleted")
+      .delete(`http://localhost:3001/api/deletePost/${user.uid}/${postID}`)
+      .then((response) => {
+        console.log("Post Deleted")
         const updatedPosts = userPosts.filter((post) => post._id !== postID);
         setUserPosts(updatedPosts);
-			})
-			.catch((error) => {
-				console.error('Error fetching data:', error);
-			});
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   };
 
   const getMovieTitle = async (movieID) => {

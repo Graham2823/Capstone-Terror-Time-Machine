@@ -1,71 +1,71 @@
 .review-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
-  
-  .review {
-    display: flex;
-    flex-direction: column;
-    width: 420px;
-    background-color: rgb(114, 114, 114);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #fff;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-  }
-  
-  .user-info {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .user-name {
-    margin: 0;
-  }
-  
-  .review-star-rating {
-    color: #ffcc00;
-  }
-  
-  .reply-button {
-    align-self: flex-end;
-    width: auto;
-    margin: auto;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
 
-  .thumbs {
-    display: flex;
-    justify-content: end;
-    gap: 10px;
-    color: #ffffff; 
-    transition: color 0.3s;
-  }
+.review {
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  background-color: rgb(114, 114, 114);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
 
-  .thumbs .icon-up:hover {
-    color: rgb(81, 142, 255);
-  }
+.user-info {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .thumbs .icon-down:hover {
-    color: #ec1c1c;
-  }
+.user-name {
+  margin: 0;
+}
 
-  .delete-button {
-    width: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
+.review-star-rating {
+  color: #ffcc00;
+}
 
-  .liked {
-    color: rgb(81, 142, 255);
-  }
+.reply-button {
+  align-self: flex-end;
+  width: auto;
+  margin: auto;
+}
 
-  .disliked {
-    color: #ec1c1c;
-  }
+.thumbs {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  color: #ffffff; 
+  transition: color 0.3s;
+}
+
+.thumbs .icon-up:hover {
+  color: rgb(81, 142, 255);
+}
+
+.thumbs .icon-down:hover {
+  color: #ec1c1c;
+}
+
+.delete-button {
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.liked {
+  color: rgb(81, 142, 255);
+}
+
+.disliked {
+  color: #ec1c1c;
+}
   
