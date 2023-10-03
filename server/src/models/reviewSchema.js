@@ -34,6 +34,10 @@ const reviewSchema = new mongoose.Schema({
 				type: String,
 				required: true
 			},
+			profileImage:{
+				type:String,
+				required: true,
+			}
 		}
 	],
 	reactions:[
@@ -48,7 +52,11 @@ const reviewSchema = new mongoose.Schema({
 			}
 		}
 
-	]
+	],
+	profileImage:{
+		type:String,
+		required: true,
+	}
 });
 
 module.exports = mongoose.model('Review', reviewSchema);

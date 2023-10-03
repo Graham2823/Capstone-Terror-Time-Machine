@@ -23,6 +23,7 @@ function SignIn() {
 		  axios
 			.get(`http://localhost:3001/api/user/${userID}`)
 			.then((response) => {
+				console.log(response)
 			  const username = response.data.username;
 	
 			  // Set the username in the context

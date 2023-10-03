@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
             ref: "Post", // The name of the model to which it refers (should match your Review model name)
         },
     ],
+    profileImage:{
+        type: String,
+        required: true,
+    }
 });
 
 module.exports = mongoose.model("User", userSchema);
