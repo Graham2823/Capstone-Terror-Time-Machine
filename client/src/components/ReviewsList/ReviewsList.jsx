@@ -29,68 +29,91 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
       });
   };
 
+  
+  
   const handleLike = async (reviewID) => {
-    if (!likedReviews.includes(reviewID) && !dislikedReviews.includes(reviewID)) {
+    try {
       const requestData = {
         uid: user.uid,
         reviewID: reviewID,
         reaction: 'Like',
       };
+  
       const response = await axios.post(
         'http://localhost:3001/api/reviewReaction',
         requestData
       );
-
-      localStorage.setItem(`liked_${reviewID}`, true);
-
-      setReaction('Like');
-      setLikedReviews([...likedReviews, reviewID]);
-
+  
+      // Find the specific review that matches the reviewID
       const updatedReviews = reviews.map((review) => {
         if (review._id === reviewID) {
-          review.reactions.push({ uid: user.uid, reaction: 'Like' });
+          // Check if the user already had a reaction
+          const existingReactionIndex = review.reactions.findIndex(
+            (reaction) =>
+              reaction.uid === user.uid &&
+              (reaction.reaction === 'Like' || reaction.reaction === 'Dislike')
+          );
+  
+          if (existingReactionIndex !== -1) {
+            // User already had a reaction, update it
+            review.reactions[existingReactionIndex].reaction = 'Like';
+          } else {
+            // User didn't have a reaction, add a new one
+            review.reactions.push({ uid: user.uid, reaction: 'Like' });
+          }
         }
         return review;
       });
-      
-      const alreadyLiked = localStorage.getItem(`liked_${reviewID}`);
-
+  
       setReviews(updatedReviews);
+    } catch (error) {
+      console.error('Error liking review:', error);
     }
   };
-
-    
+  
   const handleDislike = async (reviewID) => {
-    if (!likedReviews.includes(reviewID) && !dislikedReviews.includes(reviewID)) {
+    try {
       const requestData = {
         uid: user.uid,
         reviewID: reviewID,
         reaction: 'Dislike',
       };
+  
       const response = await axios.post(
         'http://localhost:3001/api/reviewReaction',
         requestData
       );
-
-      localStorage.setItem(`disliked_${reviewID}`, true);
-
-      setReaction('Dislike');
-      setDislikedReviews([...dislikedReviews, reviewID]);
-
+  
+      // Find the specific review that matches the reviewID
       const updatedReviews = reviews.map((review) => {
         if (review._id === reviewID) {
-          review.reactions.push({ uid: user.uid, reaction: 'Dislike' });
+          // Check if the user already had a reaction
+          const existingReactionIndex = review.reactions.findIndex(
+            (reaction) =>
+              reaction.uid === user.uid &&
+              (reaction.reaction === 'Like' || reaction.reaction === 'Dislike')
+          );
+  
+          if (existingReactionIndex !== -1) {
+            // User already had a reaction, update it
+            review.reactions[existingReactionIndex].reaction = 'Dislike';
+          } else {
+            // User didn't have a reaction, add a new one
+            review.reactions.push({ uid: user.uid, reaction: 'Dislike' });
+          }
         }
         return review;
       });
-
+  
       setReviews(updatedReviews);
+    } catch (error) {
+      console.error('Error disliking review:', error);
     }
   };
  
-    return (
+  return (
     <div className="reviews-section">
-      <ToastContainer/>
+      <ToastContainer />
       <h2>User Reviews</h2>
       <div className="review-container">
         {reviews.length > 0 && user ? (
@@ -98,27 +121,54 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
             <div className="review" key={review._id}>
               <div className="user-info">
                 <h4 className="user-name">User: {review.username}</h4>
-                <h3 className="review-star-rating">
-                  ★ {review.Rating}/5
-                </h3>
+                <h3 className="review-star-rating">★ {review.Rating}/5</h3>
               </div>
               {review.commentText ? (
                 <>
                   <p>Comment: {review.commentText}</p>
                   <div className="thumbs">
-                    <FontAwesomeIcon
-                      className={`icon-up ${localStorage.getItem(`liked_${review._id}`) ? 'liked' : ''}`}
-                      icon={faThumbsUp}
-                      onClick={() => handleLike(review._id)}
-                    />
-                    <span>{review.reactions.filter((reaction) => reaction.reaction === 'Like').length}</span>
-                    <FontAwesomeIcon
-                      className={`icon-down ${localStorage.getItem(`disliked_${review._id}`) ? 'disliked' : ''}`}
-                      icon={faThumbsDown}
-                      onClick={() => handleDislike(review._id)}
-                    />
-                    <span>{review.reactions.filter((reaction) => reaction.reaction === 'Dislike').length}</span>
-                  </div>
+                <FontAwesomeIcon
+                  className={` ${
+                    review.reactions &&
+                    review.reactions.some(
+                      (reaction) =>
+                        reaction.uid === user.uid && reaction.reaction === 'Like'
+                    )
+                      ? 'liked'
+                      : ''
+                  }`}
+                  icon={faThumbsUp}
+                  onClick={() => handleLike(review._id)}
+                />
+                <FontAwesomeIcon
+                  className={` ${
+                    review.reactions &&
+                    review.reactions.some(
+                      (reaction) =>
+                        reaction.uid === user.uid &&
+                        reaction.reaction === 'Dislike'
+                    )
+                      ? 'disliked'
+                      : ''
+                  }`}
+                  icon={faThumbsDown}
+                  onClick={() => handleDislike(review._id)}
+                />
+              </div>
+              <div className='reactionNumbers'>
+          <span className="like-count">
+            {review.reactions && review.reactions.filter(
+              (reaction) => reaction.reaction === 'Like'
+            ).length}{' '}
+            Like
+          </span>
+          <span className="dislike-count">
+            {review.reactions && review.reactions.filter(
+              (reaction) => reaction.reaction === 'Dislike'
+            ).length}{' '}
+            Dislike
+          </span>
+        </div>
                 </>
               ) : (
                 <p>No Review</p>
@@ -127,13 +177,18 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
                 <button
                   className="delete-button"
                   onClick={() => handleDeleteReview(review._id)}
-                >
+                > 
                   <div>
-                  <FontAwesomeIcon icon={faTrash} />
+                    <FontAwesomeIcon icon={faTrash} />
                   </div>
                 </button>
               )}
-              <button className="reply-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>Reply</button>
+              <button
+                className="reply-button"
+                onClick={() => navigate(`/reviewDetail/${review._id}`)}
+              >
+                Reply
+              </button>
             </div>
           ))
         ) : (
