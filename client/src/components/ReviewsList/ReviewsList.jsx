@@ -10,7 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ReviewsList = ({ reviews, setReviews, setReaction }) => {
   const navigate = useNavigate()
-   const { user } = useContext(UserContext); 
+  const { user } = useContext(UserContext);
+  const [likedReviews, setLikedReviews] = useState([]);
+  const [dislikedReviews, setDislikedReviews] = useState([]);
+
   const handleDeleteReview = (reviewID) => {
     axios
 			.delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
@@ -26,53 +29,64 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
 			});
   };
 
-  const handleLike = async(reviewID) =>{
-    const requestData = {
-      uid: user.uid,
-      reviewID: reviewID,
-      reaction: 'Like'
-    };
-    const response = await axios.post(
-      'http://localhost:3001/api/reviewReaction',
-      requestData
-      );
-      
-      setReaction('Like')
-      console.log(response.data)
-      // Create a copy of the reviews array with updated reactions
-  const updatedReviews = reviews.map((review) => {
-    if (review._id === reviewID) {
-      review.reactions.push({ uid: user.uid, reaction: 'Like' });
-    }
-    return review;
-  });
-
-  // Update the reviews state with the new array
-  setReviews(updatedReviews);
-    }
-    
-    const handleDislike = async (reviewID) =>{
+  const handleLike = async (reviewID) => {
+    if (!likedReviews.includes(reviewID) && !dislikedReviews.includes(reviewID)) {
       const requestData = {
         uid: user.uid,
         reviewID: reviewID,
-        reaction: "Dislike"
+        reaction: 'Like',
       };
       const response = await axios.post(
         'http://localhost:3001/api/reviewReaction',
         requestData
-        );
-        setReaction('Dislike')
-        console.log(response.data)
-        const updatedReviews = reviews.map((review) => {
-          if (review._id === reviewID) {
-            review.reactions.push({ uid: user.uid, reaction: 'Dislike' });
-          }
-          return review;
-        });
+      );
+
+      localStorage.setItem(`liked_${reviewID}`, true);
+
+      setReaction('Like');
+      setLikedReviews([...likedReviews, reviewID]);
+
+      const updatedReviews = reviews.map((review) => {
+        if (review._id === reviewID) {
+          review.reactions.push({ uid: user.uid, reaction: 'Like' });
+        }
+        return review;
+      });
       
-        // Update the reviews state with the new array
-        setReviews(updatedReviews);
-  }
+      const alreadyLiked = localStorage.getItem(`liked_${reviewID}`);
+
+      setReviews(updatedReviews);
+    }
+  };
+
+    
+  const handleDislike = async (reviewID) => {
+    if (!likedReviews.includes(reviewID) && !dislikedReviews.includes(reviewID)) {
+      const requestData = {
+        uid: user.uid,
+        reviewID: reviewID,
+        reaction: 'Dislike',
+      };
+      const response = await axios.post(
+        'http://localhost:3001/api/reviewReaction',
+        requestData
+      );
+
+      localStorage.setItem(`disliked_${reviewID}`, true);
+
+      setReaction('Dislike');
+      setDislikedReviews([...dislikedReviews, reviewID]);
+
+      const updatedReviews = reviews.map((review) => {
+        if (review._id === reviewID) {
+          review.reactions.push({ uid: user.uid, reaction: 'Dislike' });
+        }
+        return review;
+      });
+
+      setReviews(updatedReviews);
+    }
+  };
  
     return (
     <div className="reviews-section">
@@ -92,8 +106,18 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
                 <>
                   <p>Comment: {review.commentText}</p>
                   <div className="thumbs">
-                    <FontAwesomeIcon className="icon-up" icon={faThumbsUp} onClick={()=>handleLike(review._id)} />
-                    <FontAwesomeIcon className="icon-down" icon={faThumbsDown} onClick={()=>handleDislike(review._id)} />
+                    <FontAwesomeIcon
+                      className={`icon-up ${localStorage.getItem(`liked_${review._id}`) ? 'liked' : ''}`}
+                      icon={faThumbsUp}
+                      onClick={() => handleLike(review._id)}
+                    />
+                    <span>{review.reactions.filter((reaction) => reaction.reaction === 'Like').length}</span>
+                    <FontAwesomeIcon
+                      className={`icon-down ${localStorage.getItem(`disliked_${review._id}`) ? 'disliked' : ''}`}
+                      icon={faThumbsDown}
+                      onClick={() => handleDislike(review._id)}
+                    />
+                    <span>{review.reactions.filter((reaction) => reaction.reaction === 'Dislike').length}</span>
                   </div>
                 </>
               ) : (
