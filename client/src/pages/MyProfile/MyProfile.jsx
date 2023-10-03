@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import {faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './MyProfile.css';
 
 
 const MyProfile = () => {
@@ -62,13 +63,11 @@ const MyProfile = () => {
 
   const getMovieTitle = async (movieID) => {
     if (movieTitles[movieID]) {
-      // If the title is already fetched, return it from state
       return movieTitles[movieID];
     } else {
       try {
         const response = await axios.get(`http://localhost:3001/api/movieByID/${movieID}`);
         const movieTitle = response.data.title;
-        // Store the movie title in state for future use
         setMovieTitles((prevTitles) => ({
           ...prevTitles,
           [movieID]: movieTitle,
@@ -76,7 +75,7 @@ const MyProfile = () => {
         return movieTitle;
       } catch (error) {
         console.error('Error fetching data:', error);
-        return ''; // Return an empty string or handle the error as needed
+        return ''; 
       }
     }
   };
@@ -107,15 +106,18 @@ const MyProfile = () => {
         <>
           <div>
             <h1>{username}</h1>
+            <div className="profile-buttons">
             <button onClick={() => setShowReviews(true)}>Reviews</button>
             <button onClick={() => setShowReviews(false)}>Posts</button>
+            </div>
           </div>
           <div>
             {showReviews ? (
               userReviews.map((review) => {
                 const movieTitle = resolvedMovieTitles[review.movieID];
                 return (
-                  <div className="review" key={review._id}>
+                  <div className="profile-review-container">
+                  <div className="profile-review" key={review._id}>
                     <div className="user-info">
                       <h4 className="user-name">User: {review.username}</h4>
                       <h4 className="user-name">Movie: {movieTitle}</h4>
@@ -134,13 +136,15 @@ const MyProfile = () => {
                         <FontAwesomeIcon icon={faTrash} />
                       </div>
                     </button>
-                    <button onClick={() => navigate(`/reviewDetail/${review._id}`)}>View Discussion</button>
+                    <button className="discussion-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>View Discussion</button>
+                  </div>
                   </div>
                 );
               })
             ) : (
               userPosts.map((post) => (
-                <div className="review" key={post._id}>
+                <div className="profile-review-container">
+                <div className="profile-review" key={post._id}>
                   <div className="user-info">
                     <h4 className="user-name">User: {post.username}</h4>
                   </div>
@@ -155,7 +159,8 @@ const MyProfile = () => {
                       <FontAwesomeIcon icon={faTrash} />
                     </div>
                   </button>
-                  <button onClick={() => navigate(`/postDetails/${post._id}`)}>View Discussion</button>
+                  <button className="discussion-button" onClick={() => navigate(`/postDetails/${post._id}`)}>View Discussion</button>
+                </div>
                 </div>
               ))
             )}
