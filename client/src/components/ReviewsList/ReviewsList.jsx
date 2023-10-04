@@ -175,6 +175,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
               ) : (
                 <p>No Review</p>
               )}
+              <div className='reply-delete'>
               {user.uid == review.uid && (
                 <button
                   className="delete-button"
@@ -191,6 +192,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
               >
                 Reply
               </button>
+            </div>
             </div>
           ))
         ) : (

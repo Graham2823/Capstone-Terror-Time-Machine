@@ -35,7 +35,6 @@
   .reply-button {
     align-self: flex-end;
     width: auto;
-    margin: auto;
   }
 
   .thumbs {
@@ -75,5 +74,12 @@
     display: flex;
     flex-direction: row;
     justify-content: end;
+  }
+
+  .reply-delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
   }
 

@@ -135,6 +135,7 @@ const MyProfile = () => {
                     {review.commentText && (
                       <p>Comment: {review.commentText}</p>
                     )}
+                    <div className='reply-delete'>
                     <button
                       className="delete-button"
                       onClick={() => handleDeleteReview(review._id)}
@@ -144,6 +145,7 @@ const MyProfile = () => {
                       </div>
                     </button>
                     <button className="discussion-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>View Thread</button>
+                  </div>
                   </div>
                   </div>
                 );
@@ -161,6 +163,7 @@ const MyProfile = () => {
                   {post.postText && (
                     <p>{post.postText}</p>
                   )}
+                  <div className='reply-delete'>
                   <button
                     className="delete-button"
                     onClick={() => handleDeletePost(post._id)}
@@ -170,6 +173,7 @@ const MyProfile = () => {
                     </div>
                   </button>
                   <button className="discussion-button" onClick={() => navigate(`/postDetails/${post._id}`)}>View Thread</button>
+                </div>
                 </div>
                 </div>
               ))
