@@ -10,6 +10,10 @@ import axios from 'axios';
 import './HomePage.css';
 import Reviews from '../../components/Reviews/Reviews';
 import ContactForm from '../ContactPage/ContactPage';
+import Avatar1 from '../../assets/Avatar1.png';
+import Avatar2 from '../../assets/Avatar2.png';
+import Avatar3 from '../../assets/Avatar3.png';
+import Avatar4 from '../../assets/Avatar4.png';
 
 const HomePage = () => {
 	const { username } = useContext(UserContext);
@@ -54,7 +58,10 @@ const HomePage = () => {
 
 	return (
 		<div>
+			<div className='user-details'>
+			<img src={Avatar3} alt="Profile image" className='profile-image'/>
 			<h2>Hello {username}!</h2>
+			</div>
 			<div className='sort'>
 				<SortMovies
 					onSearch={handleSearch}

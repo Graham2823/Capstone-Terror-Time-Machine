@@ -5,7 +5,7 @@ const ForumReviewCard = ({postDetails}) => {
   return (
     <div className="review" style={{ margin: "20px auto" }}>
         <div className="user-info">
-          <h4 className="user-name">User: {postDetails.username}</h4>
+          <h4 className="user-name">{postDetails.username}</h4>
         </div>
         {postDetails.postText ? (
           <>

@@ -47,13 +47,13 @@ export const UserProvider = ({ children }) => {
       console.log('Successfully signed in:', user);
     } catch (error) {
       if(error.code === "auth/user-not-found"){
-        toast.error('Email or Password not found. try again!')
+        toast.error('Email or Password not Found. Try Again!')
       } else if(error.code === "auth/wrong-password"){
-        toast.error('Wrong Paswsword. Try Again!')
+        toast.error('Wrong Password. Try Again!')
       } else if(error.code === "auth/invalid-email"){
-        toast.error("invalid Email Format. try Again!")
+        toast.error("Invalid Email Format. Try Again!")
       }else if (error.code === "auth/too-many-requests"){
-        toast.error("Too many failed attempts. Refresh, and try again!")
+        toast.error("Too many failed attempts. Refresh and try again!")
       }
       console.error('Error signing innnn:', error.code);
     }

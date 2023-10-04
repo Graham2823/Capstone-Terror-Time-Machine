@@ -61,7 +61,7 @@ function Reviews( {movieID, onReviewSubmit, setReviewMade }) {
           }}
         />
         <div className="star-rating-container">
-        <StarRating onRatingChange={handleRatingChange} />
+        <StarRating onRatingChange={handleRatingChange} rating={rating} setRating={setRating}/>
         </div>
         <button id="submit" onClick={handleSubmit}>Submit</button>
       </div>

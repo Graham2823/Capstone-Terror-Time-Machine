@@ -27,3 +27,18 @@
     border: 1px solid #ccc;
     margin-bottom: 10px;
   }
+
+.profile-button {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .profile-button.active {
+    background-color: #6a4ba1;
+    color: #fff;
+  }
