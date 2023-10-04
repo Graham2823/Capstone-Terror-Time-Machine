@@ -40,7 +40,7 @@ const handlePostSubmit = async() => {
     console.log(response.data)
     setForumPosts([requestData, ...forumPosts]);
     setPostContent("");
-    toast.success("Post Suuccessfully Added!")
+    toast.success("Post Successfully Added!")
   };
 
   return (

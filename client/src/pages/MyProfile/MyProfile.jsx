@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import {faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MovieDetailCard from '../../components/MovieDetailCard/MovieDetailCard';
 import './MyProfile.css';
 
 
@@ -119,7 +120,7 @@ const MyProfile = () => {
                   <div className="profile-review-container">
                   <div className="profile-review" key={review._id}>
                     <div className="user-info">
-                      <h4 className="user-name">User: {review.username}</h4>
+                      <h4 className="user-name">{review.username}</h4>
                       <h4 className="user-name">Movie: {movieTitle}</h4>
                       <h3 className="review-star-rating">
                         ★ {review.Rating}/5
@@ -146,7 +147,7 @@ const MyProfile = () => {
                 <div className="profile-review-container">
                 <div className="profile-review" key={post._id}>
                   <div className="user-info">
-                    <h4 className="user-name">User: {post.username}</h4>
+                    <h4 className="user-name">{post.username}</h4>
                   </div>
                   {post.postText && (
                     <p>{post.postText}</p>

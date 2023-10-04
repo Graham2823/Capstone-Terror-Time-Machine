@@ -28,7 +28,7 @@ const ForumReplyCard = ({ postDetails, setPostDetails, postID }) => {
         postDetails.Replies.map((forumReply) => (
           <div className="review" key={forumReply._id}>
             <div className="user-info">
-              <h4 className="user-name">User: {forumReply.username}</h4>
+              <h4 className="user-name">{forumReply.username}</h4>
             </div>
             {forumReply.text ? (
               <p>Comment: {forumReply.text}</p>

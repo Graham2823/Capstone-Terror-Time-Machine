@@ -48,6 +48,7 @@ function SignIn() {
 		<div>
 			<ToastContainer />
 			<h2>Sign In</h2>
+			<div className='sign-up'>
 			<input
 				type='email'
 				placeholder='Email'
@@ -60,6 +61,7 @@ function SignIn() {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
+			</div>
 			<button onClick={handleSignInClick}>Sign In</button>
 			<p>
 				<Link to={'/signup'}>Dont have an account? Click here to sign up</Link>
