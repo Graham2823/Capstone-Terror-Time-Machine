@@ -127,48 +127,47 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
                 <>
                   <p>Comment: {review.commentText}</p>
                   <div className="thumbs">
-                <FontAwesomeIcon
-                  className={` ${
-                    review.reactions &&
-                    review.reactions.some(
-                      (reaction) =>
-                        reaction.uid === user.uid && reaction.reaction === 'Like'
-                    )
-                      ? 'liked'
-                      : ''
-                  }`}
-                  icon={faThumbsUp}
-                  onClick={() => handleLike(review._id)}
-                />
-                <FontAwesomeIcon
-                  className={` ${
-                    review.reactions &&
-                    review.reactions.some(
-                      (reaction) =>
-                        reaction.uid === user.uid &&
-                        reaction.reaction === 'Dislike'
-                    )
-                      ? 'disliked'
-                      : ''
-                  }`}
-                  icon={faThumbsDown}
-                  onClick={() => handleDislike(review._id)}
-                />
-              </div>
-              <div className='reactionNumbers'>
-          <span className="like-count">
-            {review.reactions && review.reactions.filter(
-              (reaction) => reaction.reaction === 'Like'
-            ).length}{' '}
-            Like
-          </span>
-          <span className="dislike-count">
-            {review.reactions && review.reactions.filter(
-              (reaction) => reaction.reaction === 'Dislike'
-            ).length}{' '}
-            Dislike
-          </span>
-        </div>
+                    <FontAwesomeIcon
+                      className={`${
+                        review.reactions &&
+                        review.reactions.some(
+                          (reaction) =>
+                            reaction.uid === user.uid &&
+                            reaction.reaction === 'Like'
+                        )
+                          ? 'liked'
+                          : ''
+                      }`}
+                      icon={faThumbsUp}
+                      onClick={() => handleLike(review._id)}
+                    />
+                    <span className="like-count">
+                      {review.reactions &&
+                        review.reactions.filter(
+                          (reaction) => reaction.reaction === 'Like'
+                        ).length}
+                    </span>
+                    <FontAwesomeIcon
+                      className={`${
+                        review.reactions &&
+                        review.reactions.some(
+                          (reaction) =>
+                            reaction.uid === user.uid &&
+                            reaction.reaction === 'Dislike'
+                        )
+                          ? 'disliked'
+                          : ''
+                      }`}
+                      icon={faThumbsDown}
+                      onClick={() => handleDislike(review._id)}
+                    />
+                    <span className="like-count">
+                      {review.reactions &&
+                        review.reactions.filter(
+                          (reaction) => reaction.reaction === 'Dislike'
+                        ).length}
+                    </span>
+                  </div>
                 </>
               ) : (
                 <p>No Review</p>
@@ -177,7 +176,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
                 <button
                   className="delete-button"
                   onClick={() => handleDeleteReview(review._id)}
-                > 
+                >
                   <div>
                     <FontAwesomeIcon icon={faTrash} />
                   </div>
@@ -196,7 +195,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
         )}
       </div>
     </div>
-  );
+  );  
 };
 
 export default ReviewsList;

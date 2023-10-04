@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import ForumPostList from "../../components/Post/Post";
 import { UserContext } from '../../context/userContext';
-import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 import './Forum.css'
 import { ToastContainer, toast } from 'react-toastify';

@@ -136,7 +136,7 @@ const MyProfile = () => {
                         <FontAwesomeIcon icon={faTrash} />
                       </div>
                     </button>
-                    <button className="discussion-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>View Discussion</button>
+                    <button className="discussion-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>View Thread</button>
                   </div>
                   </div>
                 );
@@ -149,7 +149,7 @@ const MyProfile = () => {
                     <h4 className="user-name">User: {post.username}</h4>
                   </div>
                   {post.postText && (
-                    <p>Comment: {post.postText}</p>
+                    <p>{post.postText}</p>
                   )}
                   <button
                     className="delete-button"
@@ -159,7 +159,7 @@ const MyProfile = () => {
                       <FontAwesomeIcon icon={faTrash} />
                     </div>
                   </button>
-                  <button className="discussion-button" onClick={() => navigate(`/postDetails/${post._id}`)}>View Discussion</button>
+                  <button className="discussion-button" onClick={() => navigate(`/postDetails/${post._id}`)}>View Thread</button>
                 </div>
                 </div>
               ))

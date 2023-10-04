@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import MovieGrid from '../../components/MovieGrid/MovieGrid';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/Navbar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SortMovies from '../../components/FilterMovies/FilterMovies';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
