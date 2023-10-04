@@ -3,10 +3,11 @@ import User from "../models/userSchema";
 export const createUser = async (req, res, next) => {
     
     try {
-        const { uid, username } = req.body;
+        const { uid, username, profileImage } = req.body;
         const newUser = new User({
             uid: uid,
-            username: username
+            username: username,
+            profileImage:profileImage
         });
 
         const savedUser = await newUser.save();

@@ -16,13 +16,13 @@ import Avatar3 from '../../assets/Avatar3.png';
 import Avatar4 from '../../assets/Avatar4.png';
 
 const HomePage = () => {
-	const { username } = useContext(UserContext);
+	const { username, profileImage } = useContext(UserContext);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [filteredMovies, setFilteredMovies] = useState(null);
 	const [pagnatedMovies, setPagnatedMovies] = useState([]);
 	const [loadingMovies, setLoadingMovies] = useState(false);
+  console.log("profile image", profileImage)
 	const [totalPages, setTotalPages] = useState(1);
-
 	const moviesPerPage = 20;
 	const startIndex = (currentPage - 1) * moviesPerPage;
 	const endIndex = startIndex + moviesPerPage;
@@ -61,7 +61,7 @@ const HomePage = () => {
 	return (
 		<div>
 			<div className='user-details'>
-			<img src={Avatar3} alt="Profile image" className='profile-image'/>
+			<img src={profileImage} alt="Profile image" className='profile-image'/>
 			<h2>Hello {username}!</h2>
 			</div>
 			<div className='sort'>

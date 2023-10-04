@@ -5,6 +5,9 @@ const ForumReviewCard = ({postDetails}) => {
   return (
     <div className="review" style={{ margin: "20px auto" }}>
         <div className="user-info">
+        {postDetails.profileImage&&
+              <img src={postDetails.profileImage} alt="Profile image" className='profile-image'/>
+              }
           <h4 className="user-name">{postDetails.username}</h4>
         </div>
         {postDetails.postText ? (

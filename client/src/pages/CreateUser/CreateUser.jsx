@@ -47,7 +47,7 @@ function CreateUser() {
 			const requestData = {
 				username: username,
 				uid: user.uid,
-				avatar: selectedAvatar
+				profileImage: selectedAvatar
 			};
 			const response = await axios.post(
 				'http://localhost:3001/api',

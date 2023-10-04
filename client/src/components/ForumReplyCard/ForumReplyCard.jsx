@@ -28,6 +28,9 @@ const ForumReplyCard = ({ postDetails, setPostDetails, postID }) => {
         postDetails.Replies.map((forumReply) => (
           <div className="review" key={forumReply._id}>
             <div className="user-info">
+            {forumReply.profileImage&&
+              <img src={forumReply.profileImage} alt="Profile image" className='profile-image'/>
+              }
               <h4 className="user-name">{forumReply.username}</h4>
             </div>
             {forumReply.text ? (

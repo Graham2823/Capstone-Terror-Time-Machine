@@ -120,6 +120,9 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
           reviews.map((review) => (
             <div className="review" key={review._id}>
               <div className="user-info">
+              {review.profileImage&&
+              <img src={review.profileImage} alt="Profile image" className='profile-image'/>
+              }
                 <h4 className="user-name">{review.username}</h4>
                 <h3 className="review-star-rating">★ {review.Rating}/5</h3>
               </div>

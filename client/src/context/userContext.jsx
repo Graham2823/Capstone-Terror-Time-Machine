@@ -9,10 +9,12 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState(null);
+  const [profileImage, setProfileImage] = useState(null)
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     const storedUsername = localStorage.getItem('username');
+    const storedProfileImage = localStorage.getItem('profileImage');
 
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -20,6 +22,9 @@ export const UserProvider = ({ children }) => {
 
     if (storedUsername) {
       setUsername(JSON.parse(storedUsername));
+    }
+    if (storedProfileImage) {
+      setProfileImage(JSON.parse(storedProfileImage));
     }
 
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -64,6 +69,7 @@ export const UserProvider = ({ children }) => {
       await signOut(auth);
       localStorage.removeItem('user');
       localStorage.removeItem('username');
+      localStorage.removeItem('profileImage');
       
       setUser(null);
       setUsername(null);
@@ -80,7 +86,9 @@ export const UserProvider = ({ children }) => {
     handleSignin,
     handleSignout,
 	setUsername,
-	setUser
+	setUser,
+  profileImage,
+  setProfileImage
   };
 
   return (

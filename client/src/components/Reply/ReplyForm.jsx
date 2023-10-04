@@ -6,7 +6,7 @@ import { UserContext } from '../../context/userContext';
 const ReplyForm = ({reviewDetails, setReviewPosted}) => {
   const [reply, setReply] = useState('')
   const { reviewID } = useParams();
-  const {username, user} = useContext(UserContext)
+  const {username, user, profileImage} = useContext(UserContext)
   console.log(reply)
 
   const handleSubmit = async ()=>{
@@ -15,7 +15,8 @@ const ReplyForm = ({reviewDetails, setReviewPosted}) => {
       uid: user.uid,
       username: username,
       reviewID: reviewID,
-      replyText: reply
+      replyText: reply,
+      profileImage: profileImage
     };
     const response = await axios.post(
       'http://localhost:3001/api/reply',

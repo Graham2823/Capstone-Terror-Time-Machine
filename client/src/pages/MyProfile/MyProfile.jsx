@@ -10,7 +10,7 @@ import './MyProfile.css';
 
 
 const MyProfile = () => {
-  const {user, username} = useContext(UserContext)
+  const {user, username, profileImage} = useContext(UserContext)
   const [userReviews, setUserReviews] = useState()
   const [userPosts, setUserPosts] = useState()
   const [showReviews, setShowReviews] = useState(true)
@@ -106,6 +106,9 @@ const MyProfile = () => {
       {user && userReviews && userPosts && (
         <>
           <div>
+          {profileImage&&
+              <img src={profileImage} alt="Profile image" className='profile-image'/>
+              }
             <h1>{username}</h1>
             <div className="profile-buttons">
             <button onClick={() => setShowReviews(true)}>Reviews</button>
@@ -120,6 +123,9 @@ const MyProfile = () => {
                   <div className="profile-review-container">
                   <div className="profile-review" key={review._id}>
                     <div className="user-info">
+                    {review.profileImage&&
+              <img src={review.profileImage} alt="Profile image" className='profile-image'/>
+              }
                       <h4 className="user-name">{review.username}</h4>
                       <h4 className="user-name">Movie: {movieTitle}</h4>
                       <h3 className="review-star-rating">
@@ -149,6 +155,9 @@ const MyProfile = () => {
                 <div className="profile-review-container">
                 <div className="profile-review" key={post._id}>
                   <div className="user-info">
+                  {post.profileImage&&
+              <img src={post.profileImage} alt="Profile image" className='profile-image'/>
+              }
                     <h4 className="user-name">{post.username}</h4>
                   </div>
                   {post.postText && (
