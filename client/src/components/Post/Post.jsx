@@ -38,6 +38,7 @@ function ForumPostList({ posts, setPosts }) {
             <div key={post._id}>
               <strong>{post.username}</strong>: {post.postText}
             </div>
+            <div className="reply-delete">
             {user.uid == post.uid && (
                 <button
                   className="delete-button"
@@ -49,6 +50,7 @@ function ForumPostList({ posts, setPosts }) {
                 </button>
               )}
             <button className="reply-button" onClick={()=>navigate(`/postDetails/${post._id}`)}>Reply</button>
+          </div>
           </div>
         ))}
       </div>

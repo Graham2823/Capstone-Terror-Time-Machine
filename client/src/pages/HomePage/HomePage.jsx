@@ -21,6 +21,7 @@ const HomePage = () => {
 	const [filteredMovies, setFilteredMovies] = useState(null);
 	const [pagnatedMovies, setPagnatedMovies] = useState([]);
 	const [loadingMovies, setLoadingMovies] = useState(false);
+	const [totalPages, setTotalPages] = useState(1);
 
 	const moviesPerPage = 20;
 	const startIndex = (currentPage - 1) * moviesPerPage;
@@ -31,14 +32,15 @@ const HomePage = () => {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/api/moviesByPage/${currentPage}`)
-			.then((response) => {
-				setPagnatedMovies(response.data);
-			})
-			.catch((error) => {
-				console.error('Error fetching data:', error);
-			});
-	}, [currentPage]);
+		  .get(`http://localhost:3001/api/moviesByPage/${currentPage}`)
+		  .then((response) => {
+			setPagnatedMovies(response.data);
+			setTotalPages(Math.ceil(response.data.length / moviesPerPage));
+		  })
+		  .catch((error) => {
+			console.error('Error fetching data:', error);
+		  });
+	  }, [currentPage, moviesPerPage]);
 
 	const handleSearch = (query) => {
 		console.log('Searching for:', query);
@@ -116,6 +118,9 @@ const HomePage = () => {
 						}>
 						Next Page
 					</button>
+			</div>
+			<div className='page-numbers'>
+  				Page {currentPage} of {totalPages}
 			</div>
 		</div>
 	);

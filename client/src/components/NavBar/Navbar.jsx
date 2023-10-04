@@ -10,7 +10,7 @@ const NavBar = () => {
       <ul>
         <li><a href="/">Homepage</a></li>
         <li><a href="/forum">General Forum</a></li>
-        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/contact">About Us</a></li>
         <li><a href="/myProfile">My Profile</a></li>
         <li onClick={handleSignout}><a href='/signin'>Signout</a></li>
       </ul>
