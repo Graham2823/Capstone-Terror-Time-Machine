@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import MovieDetailCard from '../../components/MovieDetailCard/MovieDetailCard';
 import LogoHeader from '../../components/Header/Header';
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/Navbar';
 import './MovieDetail.css';
 import Reviews from '../../components/Reviews/Reviews';
 import ReviewsList from '../../components/ReviewsList/ReviewsList';

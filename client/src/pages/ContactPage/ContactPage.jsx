@@ -1,6 +1,4 @@
 import React, { useState, useRef } from "react";
-import NavBar from '../../components/NavBar/NavBar';
-import LogoHeader from '../../components/Header/Header';
 import "./ContactPage.css";
 
 function ContactForm() {

@@ -69,3 +69,11 @@
     color: #ec1c1c;
   }
   
+  .like-count {
+    margin-right: 5px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+  }
+

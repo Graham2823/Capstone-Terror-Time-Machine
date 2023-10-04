@@ -11,7 +11,7 @@ import ContactPage from "./pages/ContactPage/ContactPage";
 import ReviewDetail from "./pages/ReviewDetail/ReviewDetail";
 import ForumPage from "./pages/Forum/Forum";
 import ForumPostDetails from "./pages/ForumPostDetail/ForumPostDetails";
-import NavBar from "./components/NavBar/NavBar";
+import NavBar from "./components/NavBar/Navbar";
 import Footer from "./components/Footer/Footer";
 import MyProfile from "./pages/MyProfile/MyProfile";
 
