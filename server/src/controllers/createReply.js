@@ -2,7 +2,7 @@ import Review from "../models/reviewSchema";
 
 export const createReply = async (req, res, next) => {
     try {
-        const { uid, username, reviewID, replyText } = req.body;
+        const { uid, username, reviewID, replyText, profileImage } = req.body;
 
      
         if (!uid || !username || !reviewID || !replyText) {
@@ -17,7 +17,7 @@ export const createReply = async (req, res, next) => {
         }
 
     
-        review.Replies.push({ uid, username, text: replyText });
+        review.Replies.push({ uid, username, text: replyText, profileImage });
 
       
         await review.save();

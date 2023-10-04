@@ -24,6 +24,9 @@ const ReplyCard = ({reviewDetails, setReviewDetails, reviewID}) => {
     reviewDetails.Replies.map((reply) => (
             <div className="review" key={reply._id}>
               <div className="user-info">
+              {reply.profileImage&&
+              <img src={reply.profileImage} alt="Profile image" className='profile-image'/>
+              }
                 <h4 className="user-name">{reply.username}</h4>
               </div>
               {reply.text ? (
