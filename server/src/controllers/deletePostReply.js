@@ -2,7 +2,7 @@ import Post from "../models/postSchema";
 
 export const deletePostReply = async (req, res, next) => {
     try {
-        const { postID, postReplyID } = req.params;
+        const { postID, postReplyID, profileImage } = req.params;
 
         // Find and delete the review associated with the given reviewId
         const post = await Post.findById(postID);

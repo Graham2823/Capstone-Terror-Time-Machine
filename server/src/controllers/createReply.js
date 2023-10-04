@@ -2,7 +2,7 @@ import Review from "../models/reviewSchema";
 
 export const createReply = async (req, res, next) => {
     try {
-        const { uid, username, reviewID, replyText } = req.body;
+        const { uid, username, reviewID, replyText, profileImage } = req.body;
 
      
         if (!uid || !username || !reviewID || !replyText) {
