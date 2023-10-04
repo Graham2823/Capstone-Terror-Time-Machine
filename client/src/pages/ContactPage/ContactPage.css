@@ -1,0 +1,16 @@
+.contact-input {
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.contact-textarea {
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.form {
+  width: 300px;
+  margin: 0;
+  padding: 20px;
+  border-radius: 10px;
+}

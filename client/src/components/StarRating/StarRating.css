@@ -1,0 +1,13 @@
+.star-rating {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+.star {
+    color: #ccc;
+    display: inline-block;
+  }
+  
+.star.active {
+    color: #ffcc00;
+  }

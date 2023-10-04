@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&family=Creepster&family=Oswald&family=Raleway:wght@400;700&display=swap");
+
+body {
+    background-color: black;
+}
+
+h1 {
+    font-family: 'Creepster', cursive;
+    color: #ec1c1c;
+}
+
+.search-bar {
+    margin: 20px;
+}
+
+.sort {
+    margin-top: 20px;
+}
+
+.top-page-buttons {
+    margin: 20px;
+}

@@ -1,36 +1,99 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect, useContext } from "react";
 import "./App.css";
-import Header from "./components/Header";
+import CreateUser from "./pages/CreateUser/CreateUser";
+import SignIn from "./pages/SignIn/SignIn";
+import HomePage from "./pages/HomePage/HomePage";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { UserContext } from "./context/userContext";
+import { Navigate } from "react-router-dom";
+import MovieDetail from "./pages/MovieDetail/MovieDetail";
+import ContactPage from "./pages/ContactPage/ContactPage";
+import ReviewDetail from "./pages/ReviewDetail/ReviewDetail";
+import ForumPage from "./pages/Forum/Forum";
+import ForumPostDetails from "./pages/ForumPostDetail/ForumPostDetails";
+import NavBar from "./components/NavBar/Navbar";
+import Footer from "./components/Footer/Footer";
+import MyProfile from "./pages/MyProfile/MyProfile";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { user, setUser } = useContext(UserContext);
+
+  const ProtectedRoute = ({ children }) => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (!storedUser) {
+      return <Navigate to="/signin" replace />;
+    }
+    return children;
+  };
 
   return (
-    <>
-      <Header />
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <>
+        <h1>Terror Time Machine</h1>
+        <NavBar/>
+        <Routes>
+          <Route path="/signup" element={<CreateUser />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute user={user}>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/movieDetail/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <MovieDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reviewDetail/:reviewID"
+            element={
+              <ProtectedRoute user={user}>
+                <ReviewDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <ProtectedRoute user={user}>
+                <ContactPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/forum"
+            element={
+              <ProtectedRoute user={user}>
+                <ForumPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/postDetails/:postID"
+            element={
+              <ProtectedRoute user={user}>
+                <ForumPostDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/myProfile"
+            element={
+              <ProtectedRoute user={user}>
+                <MyProfile />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+        <Footer/>
+      </>
+    </Router>
   );
 }
 
