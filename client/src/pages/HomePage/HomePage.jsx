@@ -61,7 +61,9 @@ const HomePage = () => {
 	return (
 		<div>
 			<div className='user-details'>
-			<img src={profileImage} alt="Profile image" className='profile-image'/>
+			{profileImage&&
+              <img src={profileImage} alt="Profile image" className='profile-image'/>
+              }
 			<h2>Hello {username}!</h2>
 			</div>
 			<div className='sort'>
