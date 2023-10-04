@@ -21,14 +21,14 @@ const MyProfile = () => {
     if(user){
       axios.get(`http://localhost:3001/api/getReviews/${user.uid}`)
       .then((response) => {
-        setUserReviews(response.data);
+        setUserReviews(response.data.reverse());
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
       axios.get(`http://localhost:3001/api/getUserPosts/${user.uid}`)
       .then((response) => {
-        setUserPosts(response.data);
+        setUserPosts(response.data.reverse());
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
