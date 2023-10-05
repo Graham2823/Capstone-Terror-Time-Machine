@@ -83,3 +83,23 @@
     margin-top: 5px;
   }
 
+  .profile-image-small {
+    width: 80px;
+    height: 80px;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px
+  }
+
+  .divider {
+    height: 1px; 
+    width: 100%; 
+    background-color: #ccc; 
+    margin: 10px 0; 
+  }
+  
+

@@ -18,3 +18,10 @@
     border: 1px solid #ccc;
     margin-bottom: 10px;
   }
+
+.user-info-post {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px
+}

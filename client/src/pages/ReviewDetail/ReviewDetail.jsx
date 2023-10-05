@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import NavBar from '../../components/NavBar/Navbar';
-import LogoHeader from '../../components/Header/Header';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import ReplyForm from '../../components/Reply/ReplyForm';
 import ReplyCard from '../../components/ReplyCard/ReplyCard';
