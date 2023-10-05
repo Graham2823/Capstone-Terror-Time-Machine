@@ -4,9 +4,9 @@ const ForumReviewCard = ({postDetails}) => {
   console.log(postDetails)
   return (
     <div className="review" style={{ margin: "20px auto" }}>
-        <div className="user-info">
+        <div className="user-info-post">
         {postDetails.profileImage&&
-              <img src={postDetails.profileImage} alt="Profile image" className='profile-image'/>
+              <img src={postDetails.profileImage} alt="Profile image" className='profile-image-small'/>
               }
           <h4 className="user-name">{postDetails.username}</h4>
         </div>

@@ -42,3 +42,34 @@
     background-color: #6a4ba1;
     color: #fff;
   }
+
+  .profile-image-featured {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
+
+  .reply-delete-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: 5px;
+  }
+
+  .user-info-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .profile-image-small-box {
+    width: 80px;
+    height: 80px;
+  }
+
+  .movie {
+    margin-left: auto;
+  }
