@@ -17,10 +17,12 @@
     "server"
   ],
   "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.22.20",
     "concurrently": "^8.2.1"
   },
   "dependencies": {
-    "@babel/node": "^7.22.19",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.5.0",
