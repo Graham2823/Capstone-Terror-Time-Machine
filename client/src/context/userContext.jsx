@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
     if (storedUsername) {
       setUsername(JSON.parse(storedUsername));
     }
-    if (storedProfileImage) {
+    if (storedProfileImage !== 'undefined') {
       setProfileImage(JSON.parse(storedProfileImage));
     }
 
