@@ -5,7 +5,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import {faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import MovieDetailCard from '../../components/MovieDetailCard/MovieDetailCard';
 import './MyProfile.css';
 
 
@@ -106,10 +105,10 @@ const MyProfile = () => {
       {user && userReviews && userPosts && (
         <>
           <div>
-          {profileImage&&
-              <img src={profileImage} alt="Profile image" className='profile-image'/>
+          <h1>{username}</h1>
+          {profileImage &&
+              <img src={profileImage} alt="Profile image" className='profile-image-featured'/>
               }
-            <h1>{username}</h1>
             <div className="profile-buttons">
             <button onClick={() => setShowReviews(true)}>Reviews</button>
             <button onClick={() => setShowReviews(false)}>Posts</button>
@@ -122,12 +121,14 @@ const MyProfile = () => {
                 return (
                   <div className="profile-review-container">
                   <div className="profile-review" key={review._id}>
-                    <div className="user-info">
+                    <div>
+                    <div className="user-info-profile">
                     {review.profileImage&&
-              <img src={review.profileImage} alt="Profile image" className='profile-image'/>
-              }
+                    <img src={review.profileImage} alt="Profile image" className='profile-image-small-box'/>
+                      }
                       <h4 className="user-name">{review.username}</h4>
-                      <h4 className="user-name">Movie: {movieTitle}</h4>
+                      <h3 className="movie">Movie: {movieTitle}</h3>
+                    </div>
                       <h3 className="review-star-rating">
                         ★ {review.Rating}/5
                       </h3>
@@ -135,7 +136,7 @@ const MyProfile = () => {
                     {review.commentText && (
                       <p>Comment: {review.commentText}</p>
                     )}
-                    <div className='reply-delete'>
+                    <div className='reply-delete-profile'>
                     <button
                       className="delete-button"
                       onClick={() => handleDeleteReview(review._id)}
@@ -154,16 +155,16 @@ const MyProfile = () => {
               userPosts.map((post) => (
                 <div className="profile-review-container">
                 <div className="profile-review" key={post._id}>
-                  <div className="user-info">
+                  <div className="user-info-posts">
                   {post.profileImage&&
-              <img src={post.profileImage} alt="Profile image" className='profile-image'/>
-              }
+                  <img src={post.profileImage} alt="Profile image" className='profile-image-small'/>
+                  }
                     <h4 className="user-name">{post.username}</h4>
                   </div>
                   {post.postText && (
                     <p>{post.postText}</p>
                   )}
-                  <div className='reply-delete'>
+                  <div className='reply-delete-profile'>
                   <button
                     className="delete-button"
                     onClick={() => handleDeletePost(post._id)}

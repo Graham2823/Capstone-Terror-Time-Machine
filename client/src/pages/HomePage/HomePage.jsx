@@ -1,19 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import MovieGrid from '../../components/MovieGrid/MovieGrid';
-import NavBar from '../../components/NavBar/Navbar';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SortMovies from '../../components/FilterMovies/FilterMovies';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import axios from 'axios';
 import './HomePage.css';
-import Reviews from '../../components/Reviews/Reviews';
-import ContactForm from '../ContactPage/ContactPage';
-import Avatar1 from '../../assets/Avatar1.png';
-import Avatar2 from '../../assets/Avatar2.png';
-import Avatar3 from '../../assets/Avatar3.png';
-import Avatar4 from '../../assets/Avatar4.png';
 
 const HomePage = () => {
 	const { username, profileImage } = useContext(UserContext);
@@ -62,7 +54,7 @@ const HomePage = () => {
 		<div>
 			<div className='user-details'>
 			{profileImage&&
-              <img src={profileImage} alt="Profile image" className='profile-image'/>
+             <img src={profileImage} alt="Profile image" className='profile-image-main'/>
               }
 			<h2>Hello {username}!</h2>
 			</div>

@@ -21,9 +21,9 @@ h1 {
     margin: 20px;
 }
 
-.profile-image {
-    height: 50px;
-    width: 50px;
+.profile-image-main {
+    height: 60px;
+    width: 60px;
 }
 
 .user-details {

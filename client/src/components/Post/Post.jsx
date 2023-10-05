@@ -36,10 +36,13 @@ function ForumPostList({ posts, setPosts }) {
         {reversedPosts.map((post) => (
           <div className="post" key={post._id}>
             <div key={post._id}>
-              {post.profileImage&&
-              <img src={post.profileImage} alt="Profile image" className='profile-image'/>
+              <div className="user-info-post">
+              {post.profileImage &&
+              <img src={post.profileImage} alt="Profile image" className='profile-image-small'/>
               }
-              <strong>{post.username}</strong>: {post.postText}
+              <strong>{post.username}</strong>
+              </div>
+              {post.postText}
             </div>
             <div className="reply-delete">
             {user.uid == post.uid && (
