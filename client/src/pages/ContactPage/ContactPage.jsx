@@ -35,8 +35,12 @@ function ContactForm() {
   };
 
   return (
-    <>
-    <div className="container">
+    <div className="about-contact">
+    <div className="about">
+      <h1>About Us</h1>
+      <p>We are three smart cookies!</p>
+    </div>
+    <div className="contact">
       <div className="bg-image">
         <h1>Contact Us</h1>
         <form ref={formRef} onSubmit={handleSubmit}>
@@ -81,9 +85,9 @@ function ContactForm() {
             Send Message
           </button>
         </form>
-      </div>
     </div>
-    </>
+    </div>
+    </div>
   );
 }
 

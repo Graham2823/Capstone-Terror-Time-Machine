@@ -4,8 +4,8 @@ import Post from "../models/postSchema";
 export const createPost = async (req, res, next) => {
    
     try {
-        const { uid, username, postText } = req.body;
-        const newPost = new Post({ uid, username, postText });
+        const { uid, username, postText,profileImage } = req.body;
+        const newPost = new Post({ uid, username, postText,profileImage });
     
         await newPost.save();
 

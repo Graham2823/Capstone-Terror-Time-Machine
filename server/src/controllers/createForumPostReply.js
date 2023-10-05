@@ -3,7 +3,7 @@ import Post from'../models/postSchema'
 
 export const createForumPostReply = async (req, res, next) => {
     try {
-        const { uid, username, postID, replyText } = req.body;
+        const { uid, username, postID, replyText,profileImage } = req.body;
 
      
         if (!uid || !username || !postID || !replyText) {
@@ -18,7 +18,7 @@ export const createForumPostReply = async (req, res, next) => {
         }
 
     
-       post.Replies.push({ uid, username, text: replyText });
+       post.Replies.push({ uid, username, text: replyText, profileImage });
 
       
         await post.save();

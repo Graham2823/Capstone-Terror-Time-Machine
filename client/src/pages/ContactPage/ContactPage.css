@@ -14,3 +14,9 @@
   padding: 20px;
   border-radius: 10px;
 }
+
+.about-contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

@@ -5,12 +5,33 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './CreateUser.css';
 import { Link } from 'react-router-dom';
+import Avatar1 from '../../assets/Avatar1.png';
+import Avatar2 from '../../assets/Avatar2.png';
+import Avatar3 from '../../assets/Avatar3.png';
+import Avatar4 from '../../assets/Avatar4.png';
+import Avatar5 from '../../assets/Avatar5.png';
+import Avatar6 from '../../assets/Avatar6.png';
+import Avatar7 from '../../assets/Avatar7.png';
+import Avatar8 from '../../assets/Avatar8.png';
+
+const avatarOptions = [
+	Avatar1,
+	Avatar2,
+	Avatar3,
+	Avatar4,
+	Avatar5,
+	Avatar6,
+	Avatar7,
+	Avatar8,
+  ];
 
 function CreateUser() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [username, setUsername] = useState('');
+	const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
 	const navigate = useNavigate();
 
 	const handleSignup = async () => {
@@ -26,6 +47,7 @@ function CreateUser() {
 			const requestData = {
 				username: username,
 				uid: user.uid,
+				profileImage: selectedAvatar
 			};
 			const response = await axios.post(
 				'http://localhost:3001/api',
@@ -51,30 +73,49 @@ function CreateUser() {
 
 	return (
 		<div>
-			<ToastContainer/>
-			<h2>Signup</h2>
+		  <ToastContainer />
+		  <h2>Sign Up</h2>
+		  <div className="sign-up">
 			<input
-				type='username'
-				placeholder='username'
-				value={username}
-				onChange={(e) => setUsername(e.target.value)}
+			  type="username"
+			  placeholder="Username"
+			  value={username}
+			  onChange={(e) => setUsername(e.target.value)}
 			/>
 			<input
-				type='email'
-				placeholder='Email'
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
+			  type="email"
+			  placeholder="Email"
+			  value={email}
+			  onChange={(e) => setEmail(e.target.value)}
 			/>
 			<input
-				type='password'
-				placeholder='Password'
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
+			  type="password"
+			  placeholder="Password"
+			  value={password}
+			  onChange={(e) => setPassword(e.target.value)}
 			/>
-			<button onClick={handleSignup}>Sign Up</button>
-			<p><Link to={'/signin'}>Already have an account? Click here to sign in</Link></p>
+			<h2>Select an Avatar</h2>
+			<div className="avatar-options">
+			  {avatarOptions.map((avatar, index) => (
+				<label key={index}>
+				  <img
+					src={avatar}
+					alt={`Avatar ${index + 1}`}
+					className={selectedAvatar === avatar ? "selected" : ""}
+					onClick={() => setSelectedAvatar(avatar)}
+				  />
+				</label>
+			  ))}
+			</div>
+		  </div>
+		  <button onClick={handleSignup}>Sign Up</button>
+		  <p>
+			<Link to={"/signin"}>
+			  Already have an account? Click here to sign in
+			</Link>
+		  </p>
 		</div>
-	);
+	  );			  
 }
 
 export default CreateUser;

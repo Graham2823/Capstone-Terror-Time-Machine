@@ -25,7 +25,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
-        toast.error('Review Could Not Be Deleted: Try Again!')
+        toast.error('Review Could Not Be Deleted: Please refresh and try again!')
       });
   };
 
@@ -120,7 +120,10 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
           reviews.map((review) => (
             <div className="review" key={review._id}>
               <div className="user-info">
-                <h4 className="user-name">User: {review.username}</h4>
+              {review.profileImage&&
+              <img src={review.profileImage} alt="Profile image" className='profile-image'/>
+              }
+                <h4 className="user-name">{review.username}</h4>
                 <h3 className="review-star-rating">★ {review.Rating}/5</h3>
               </div>
               {review.commentText ? (
@@ -172,6 +175,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
               ) : (
                 <p>No Review</p>
               )}
+              <div className='reply-delete'>
               {user.uid == review.uid && (
                 <button
                   className="delete-button"
@@ -188,6 +192,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
               >
                 Reply
               </button>
+            </div>
             </div>
           ))
         ) : (

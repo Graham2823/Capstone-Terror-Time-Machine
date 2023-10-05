@@ -6,7 +6,7 @@ import { UserContext } from '../../context/userContext';
 const ForumReplyForm = ({postDetails, setForumReviewPosted}) => {
   const [forumReply, setForumReply] = useState('')
   const { postID } = useParams();
-  const {username, user} = useContext(UserContext)
+  const {username, user, profileImage} = useContext(UserContext)
   console.log(forumReply)
 
   const handleSubmit = async ()=>{
@@ -15,7 +15,8 @@ const ForumReplyForm = ({postDetails, setForumReviewPosted}) => {
       uid: user.uid,
       username: username,
       postID: postID,
-      replyText: forumReply
+      replyText: forumReply,
+      profileImage:profileImage
     };
     const response = await axios.post(
       'http://localhost:3001/api/forumreply',

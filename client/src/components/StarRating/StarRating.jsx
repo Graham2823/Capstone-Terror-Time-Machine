@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './StarRating.css';
 
-const StarRating = ({ onRatingChange }) => {
-  const [rating, setRating] = useState(0);
+const StarRating = ({ onRatingChange, rating, setRating }) => {
 
   const handleStarClick = (value) => {
     setRating(value);

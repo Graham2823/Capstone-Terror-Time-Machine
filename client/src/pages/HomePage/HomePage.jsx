@@ -10,14 +10,19 @@ import axios from 'axios';
 import './HomePage.css';
 import Reviews from '../../components/Reviews/Reviews';
 import ContactForm from '../ContactPage/ContactPage';
+import Avatar1 from '../../assets/Avatar1.png';
+import Avatar2 from '../../assets/Avatar2.png';
+import Avatar3 from '../../assets/Avatar3.png';
+import Avatar4 from '../../assets/Avatar4.png';
 
 const HomePage = () => {
-	const { username } = useContext(UserContext);
+	const { username, profileImage } = useContext(UserContext);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [filteredMovies, setFilteredMovies] = useState(null);
 	const [pagnatedMovies, setPagnatedMovies] = useState([]);
 	const [loadingMovies, setLoadingMovies] = useState(false);
-
+  console.log("profile image", profileImage)
+	const [totalPages, setTotalPages] = useState(1);
 	const moviesPerPage = 20;
 	const startIndex = (currentPage - 1) * moviesPerPage;
 	const endIndex = startIndex + moviesPerPage;
@@ -27,14 +32,15 @@ const HomePage = () => {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/api/moviesByPage/${currentPage}`)
-			.then((response) => {
-				setPagnatedMovies(response.data);
-			})
-			.catch((error) => {
-				console.error('Error fetching data:', error);
-			});
-	}, [currentPage]);
+		  .get(`http://localhost:3001/api/moviesByPage/${currentPage}`)
+		  .then((response) => {
+			setPagnatedMovies(response.data);
+			setTotalPages(Math.ceil(response.data.length / moviesPerPage));
+		  })
+		  .catch((error) => {
+			console.error('Error fetching data:', error);
+		  });
+	  }, [currentPage, moviesPerPage]);
 
 	const handleSearch = (query) => {
 		console.log('Searching for:', query);
@@ -54,7 +60,12 @@ const HomePage = () => {
 
 	return (
 		<div>
+			<div className='user-details'>
+			{profileImage&&
+              <img src={profileImage} alt="Profile image" className='profile-image'/>
+              }
 			<h2>Hello {username}!</h2>
+			</div>
 			<div className='sort'>
 				<SortMovies
 					onSearch={handleSearch}
@@ -109,6 +120,9 @@ const HomePage = () => {
 						}>
 						Next Page
 					</button>
+			</div>
+			<div className='page-numbers'>
+  				Page {currentPage} of {totalPages}
 			</div>
 		</div>
 	);

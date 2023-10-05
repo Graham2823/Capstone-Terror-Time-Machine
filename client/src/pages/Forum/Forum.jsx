@@ -11,7 +11,7 @@ function ForumPage() {
   const [postContent, setPostContent] = useState("");
   const [forumPosts, setForumPosts] = useState([]);
   const [postMade, setPostMade] = useState(false)
-  const { user, username } = useContext(UserContext);
+  const { user, username, profileImage } = useContext(UserContext);
 
 useEffect(()=>{
   setPostMade(false)
@@ -30,7 +30,8 @@ const handlePostSubmit = async() => {
   const requestData = {
     uid: user.uid,
     username: username,
-    postText: postContent
+    postText: postContent,
+    profileImage:profileImage
   };
   const response = await axios.post(
     'http://localhost:3001/api/createPost',
@@ -40,7 +41,7 @@ const handlePostSubmit = async() => {
     console.log(response.data)
     setForumPosts([requestData, ...forumPosts]);
     setPostContent("");
-    toast.success("Post Suuccessfully Added!")
+    toast.success("Post Successfully Added!")
   };
 
   return (

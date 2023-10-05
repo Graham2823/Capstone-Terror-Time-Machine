@@ -4,7 +4,10 @@ const ReviewCard = ({reviewDetails}) => {
   return (
     <div className="review" style={{ margin: "20px auto" }}>
         <div className="user-info">
-          <h4 className="user-name">User: {reviewDetails.username}</h4>
+        {reviewDetails.profileImage&&
+              <img src={reviewDetails.profileImage} alt="Profile image" className='profile-image'/>
+              }
+          <h4 className="user-name">{reviewDetails.username}</h4>
           <h3 className="review-star-rating">
             ★ {reviewDetails.Rating}/5
           </h3>

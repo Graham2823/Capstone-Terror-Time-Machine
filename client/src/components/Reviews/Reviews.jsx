@@ -10,10 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 function Reviews( {movieID, onReviewSubmit, setReviewMade }) {
   const [commentText, setCommentText] = useState("");
   const [rating, setRating] = useState(0);
-  const {user, username} = useContext(UserContext)
+  const {user, username, profileImage} = useContext(UserContext)
   console.log(username, user.uid)
   const navigate = useNavigate()
-
+console.log("profile Image", profileImage)
   const handleInputChange = (e) => {
     setCommentText(e.target.value);
   };
@@ -28,7 +28,8 @@ function Reviews( {movieID, onReviewSubmit, setReviewMade }) {
       username: username,
       movieID: movieID,
       Rating: rating,
-      commentText: commentText
+      commentText: commentText,
+      profileImage:profileImage
     };
     const response = await axios.post(
       'http://localhost:3001/api/review',
@@ -61,7 +62,7 @@ function Reviews( {movieID, onReviewSubmit, setReviewMade }) {
           }}
         />
         <div className="star-rating-container">
-        <StarRating onRatingChange={handleRatingChange} />
+        <StarRating onRatingChange={handleRatingChange} rating={rating} setRating={setRating}/>
         </div>
         <button id="submit" onClick={handleSubmit}>Submit</button>
       </div>

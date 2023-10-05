@@ -5,11 +5,12 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import {faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MovieDetailCard from '../../components/MovieDetailCard/MovieDetailCard';
 import './MyProfile.css';
 
 
 const MyProfile = () => {
-  const {user, username} = useContext(UserContext)
+  const {user, username, profileImage} = useContext(UserContext)
   const [userReviews, setUserReviews] = useState()
   const [userPosts, setUserPosts] = useState()
   const [showReviews, setShowReviews] = useState(true)
@@ -20,14 +21,14 @@ const MyProfile = () => {
     if(user){
       axios.get(`http://localhost:3001/api/getReviews/${user.uid}`)
       .then((response) => {
-        setUserReviews(response.data);
+        setUserReviews(response.data.reverse());
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
       axios.get(`http://localhost:3001/api/getUserPosts/${user.uid}`)
       .then((response) => {
-        setUserPosts(response.data);
+        setUserPosts(response.data.reverse());
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -105,6 +106,9 @@ const MyProfile = () => {
       {user && userReviews && userPosts && (
         <>
           <div>
+          {profileImage&&
+              <img src={profileImage} alt="Profile image" className='profile-image'/>
+              }
             <h1>{username}</h1>
             <div className="profile-buttons">
             <button onClick={() => setShowReviews(true)}>Reviews</button>
@@ -119,7 +123,10 @@ const MyProfile = () => {
                   <div className="profile-review-container">
                   <div className="profile-review" key={review._id}>
                     <div className="user-info">
-                      <h4 className="user-name">User: {review.username}</h4>
+                    {review.profileImage&&
+              <img src={review.profileImage} alt="Profile image" className='profile-image'/>
+              }
+                      <h4 className="user-name">{review.username}</h4>
                       <h4 className="user-name">Movie: {movieTitle}</h4>
                       <h3 className="review-star-rating">
                         ★ {review.Rating}/5
@@ -128,6 +135,7 @@ const MyProfile = () => {
                     {review.commentText && (
                       <p>Comment: {review.commentText}</p>
                     )}
+                    <div className='reply-delete'>
                     <button
                       className="delete-button"
                       onClick={() => handleDeleteReview(review._id)}
@@ -139,6 +147,7 @@ const MyProfile = () => {
                     <button className="discussion-button" onClick={() => navigate(`/reviewDetail/${review._id}`)}>View Thread</button>
                   </div>
                   </div>
+                  </div>
                 );
               })
             ) : (
@@ -146,11 +155,15 @@ const MyProfile = () => {
                 <div className="profile-review-container">
                 <div className="profile-review" key={post._id}>
                   <div className="user-info">
-                    <h4 className="user-name">User: {post.username}</h4>
+                  {post.profileImage&&
+              <img src={post.profileImage} alt="Profile image" className='profile-image'/>
+              }
+                    <h4 className="user-name">{post.username}</h4>
                   </div>
                   {post.postText && (
                     <p>{post.postText}</p>
                   )}
+                  <div className='reply-delete'>
                   <button
                     className="delete-button"
                     onClick={() => handleDeletePost(post._id)}
@@ -160,6 +173,7 @@ const MyProfile = () => {
                     </div>
                   </button>
                   <button className="discussion-button" onClick={() => navigate(`/postDetails/${post._id}`)}>View Thread</button>
+                </div>
                 </div>
                 </div>
               ))
