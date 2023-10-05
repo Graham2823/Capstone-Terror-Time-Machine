@@ -116,6 +116,7 @@ const MyProfile = () => {
           </div>
           <div>
             {showReviews ? (
+              userReviews.length > 0 ? ( 
               userReviews.map((review) => {
                 const movieTitle = resolvedMovieTitles[review.movieID];
                 return (
@@ -151,7 +152,13 @@ const MyProfile = () => {
                   </div>
                 );
               })
-            ) : (
+              ) : (
+                <p>
+                  You haven't left any reviews yet. Leave one on a movie!{' '}
+                  <a href="/">Go to Movie List</a>
+                </p>
+              )
+            ) : userPosts.length > 0 ? (
               userPosts.map((post) => (
                 <div className="profile-review-container">
                 <div className="profile-review" key={post._id}>
@@ -177,7 +184,10 @@ const MyProfile = () => {
                 </div>
                 </div>
                 </div>
-              ))
+              )) ) : (
+                <p>
+                  You haven't made any posts yet. Leave one on the <a href="/forum">General Forum.</a>{' '}
+                </p>
             )}
           </div>
         </>
