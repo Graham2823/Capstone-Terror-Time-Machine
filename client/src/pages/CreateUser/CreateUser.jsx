@@ -32,8 +32,9 @@ function CreateUser() {
 	const [password, setPassword] = useState('');
 	const [username, setUsername] = useState('');
 	const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
+	
 	const navigate = useNavigate();
-
+  
 	const handleSignup = async () => {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(
