@@ -9,7 +9,7 @@ const ForumReplyCard = ({ postDetails, setPostDetails, postID }) => {
 
   const handleDeleteReply = (forumReplyID) => {
     axios
-      .delete(`http://localhost:3001/api/deletePostReply/${postID}/${forumReplyID}`)
+      .delete(`${import.meta.env.VITE_API_URL}/deletePostReply/${postID}/${forumReplyID}`)
       .then((response) => {
         console.log('Reply Deleted');
         const updatedReplies = postDetails.Replies.filter(

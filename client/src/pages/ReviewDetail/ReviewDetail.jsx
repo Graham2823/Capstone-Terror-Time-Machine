@@ -11,7 +11,7 @@ const ReviewDetail = () => {
   const { reviewID } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/review/${reviewID}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/review/${reviewID}`)
       .then((response) => {
         const reversedReplies = response.data.Replies.reverse();
       setReviewDetails({ ...response.data, Replies: reversedReplies });

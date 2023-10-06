@@ -13,7 +13,7 @@ const SortMovies = ({ setFilteredMovies, setLoadingMovies }) => {
     event.preventDefault();
     setLoadingMovies(true);
       axios
-        .get(`http://localhost:3001/api/sortedMovies/${sortBy}`)
+        .get(`${import.meta.env.VITE_API_URL}/sortedMovies/${sortBy}`)
         .then((response) => {
           setFilteredMovies(response.data);
           setLoadingMovies(false);

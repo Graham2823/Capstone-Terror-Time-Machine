@@ -15,7 +15,7 @@ function ForumPostList({ posts, setPosts }) {
 
   const handleDeletePost = (postID) => {
     axios
-			.delete(`http://localhost:3001/api/deletePost/${user.uid}/${postID}`)
+			.delete(`${import.meta.env.VITE_API_URL}/deletePost/${user.uid}/${postID}`)
 			.then((response) => {
 				console.log("Post Deleted")
         const updatedPosts = posts.filter((post) => post._id !== postID);

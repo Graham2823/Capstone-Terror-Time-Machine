@@ -12,7 +12,7 @@ const ForumPostDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/getOnePost/${postID}`)
+      .get(`${import.meta.env.VITE_API_URL}/getOnePost/${postID}`)
       .then((response) => {
         const reversedReplies = response.data.Replies.reverse();
         setPostDetails({ ...response.data, Replies: reversedReplies });

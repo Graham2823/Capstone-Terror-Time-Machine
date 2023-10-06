@@ -19,7 +19,7 @@ const ForumReplyForm = ({postDetails, setForumReviewPosted}) => {
       profileImage:profileImage
     };
     const response = await axios.post(
-      'http://localhost:3001/api/forumreply',
+      `${import.meta.env.VITE_API_URL}/forumreply`,
       requestData
     );
     console.log(response.data)

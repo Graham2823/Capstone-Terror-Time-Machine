@@ -8,7 +8,7 @@ const ReplyCard = ({reviewDetails, setReviewDetails, reviewID}) => {
   const {user} = useContext(UserContext)
   const handleDeleteReply = (replyID) =>{
     axios
-			.delete(`http://localhost:3001/api/deleteReply/${reviewID}/${replyID}`)
+			.delete(`${import.meta.env.VITE_API_URL}/deleteReply/${reviewID}/${replyID}`)
 			.then((response) => {
 				console.log("reply Deleted")
         const updatedReplies = reviewDetails.Replies.filter((reply) => reply._id !== replyID);

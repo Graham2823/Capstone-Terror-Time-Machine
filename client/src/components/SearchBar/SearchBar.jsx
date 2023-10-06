@@ -15,7 +15,7 @@ const SearchBar = ({ onSearch, setFilteredMovies, setLoadingMovies }) => {
       setLoadingMovies(true)
     const changedQuery = query.trim().toLowerCase();
     axios
-			.get(`http://localhost:3001/api/movies/${changedQuery}`)
+			.get(`${import.meta.env.VITE_API_URL}/movies/${changedQuery}`)
 			.then((response) => {
 				setFilteredMovies(response.data);
         setLoadingMovies(false)

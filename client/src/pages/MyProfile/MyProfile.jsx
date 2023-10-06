@@ -18,14 +18,14 @@ const MyProfile = () => {
   const navigate = useNavigate()
   useEffect(()=>{
     if(user){
-      axios.get(`http://localhost:3001/api/getReviews/${user.uid}`)
+      axios.get(`${import.meta.env.VITE_API_URL}/getReviews/${user.uid}`)
       .then((response) => {
         setUserReviews(response.data.reverse());
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-      axios.get(`http://localhost:3001/api/getUserPosts/${user.uid}`)
+      axios.get(`${import.meta.env.VITE_API_URL}/getUserPosts/${user.uid}`)
       .then((response) => {
         setUserPosts(response.data.reverse());
       })
@@ -37,7 +37,7 @@ const MyProfile = () => {
 
   const handleDeleteReview = (reviewID) => {
     axios
-      .delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
+      .delete(`${import.meta.env.VITE_API_URL}/deleteReview/${user.uid}/${reviewID}`)
       .then((response) => {
         console.log("review Deleted")
         const updatedReviews = userReviews.filter((review) => review._id !== reviewID);
@@ -50,7 +50,7 @@ const MyProfile = () => {
 
   const handleDeletePost = (postID) => {
     axios
-      .delete(`http://localhost:3001/api/deletePost/${user.uid}/${postID}`)
+      .delete(`${import.meta.env.VITE_API_URL}/deletePost/${user.uid}/${postID}`)
       .then((response) => {
         console.log("Post Deleted")
         const updatedPosts = userPosts.filter((post) => post._id !== postID);
@@ -66,7 +66,7 @@ const MyProfile = () => {
       return movieTitles[movieID];
     } else {
       try {
-        const response = await axios.get(`http://localhost:3001/api/movieByID/${movieID}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/movieByID/${movieID}`);
         const movieTitle = response.data.title;
         setMovieTitles((prevTitles) => ({
           ...prevTitles,
