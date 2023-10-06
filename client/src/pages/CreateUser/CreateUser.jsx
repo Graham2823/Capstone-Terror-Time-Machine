@@ -50,7 +50,7 @@ function CreateUser() {
 				profileImage: selectedAvatar
 			};
 			const response = await axios.post(
-				'http://localhost:3001/api',
+				`${import.meta.env.VITE_API_URL}`,
 				requestData
 			);
 			console.log('Successfully signed up:', user);

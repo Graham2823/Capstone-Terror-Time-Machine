@@ -32,7 +32,7 @@ console.log("profile Image", profileImage)
       profileImage:profileImage
     };
     const response = await axios.post(
-      'http://localhost:3001/api/review',
+      `${import.meta.env.VITE_API_URL}/review`,
       requestData
     );
     console.log(response.data)

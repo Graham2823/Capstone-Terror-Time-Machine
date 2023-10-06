@@ -21,7 +21,7 @@ function SignIn() {
 			const user = JSON.parse(localStorage.getItem('user'));
 			const userID = user.uid;
 			axios
-				.get(`http://localhost:3001/api/user/${userID}`)
+				.get(`${import.meta.env.VITE_API_URL}/user/${userID}`)
 				.then((response) => {
 					console.log("response", response)
 					const username = response.data.username;

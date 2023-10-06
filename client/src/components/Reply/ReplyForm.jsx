@@ -19,7 +19,7 @@ const ReplyForm = ({reviewDetails, setReviewPosted}) => {
       profileImage: profileImage
     };
     const response = await axios.post(
-      'http://localhost:3001/api/reply',
+      `${import.meta.env.VITE_API_URL}/reply`,
       requestData
     );
     console.log(response.data)

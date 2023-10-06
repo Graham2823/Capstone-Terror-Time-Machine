@@ -22,7 +22,7 @@ const MovieDetail = () => {
 	useEffect(() => {
 		setReviewMade(false)
 		axios
-		.get(`http://localhost:3001/api/movieByID/${id}`)
+		.get(`${import.meta.env.VITE_API_URL}/movieByID/${id}`)
 		.then((response) => {
 			setMovie(response.data);
 		})
@@ -33,7 +33,7 @@ const MovieDetail = () => {
 	
 	useEffect(()=>{
 		axios
-		.get(`http://localhost:3001/api/movieReviews/${id}`)
+		.get(`${import.meta.env.VITE_API_URL}/movieReviews/${id}`)
 		.then((response) => {
 			const reversedReviews = response.data.reverse();
 			setReviews(reversedReviews);

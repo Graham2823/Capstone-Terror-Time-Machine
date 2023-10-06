@@ -16,7 +16,7 @@ function ForumPage() {
 useEffect(()=>{
   setPostMade(false)
   axios
-  .get(`http://localhost:3001/api/getPosts`)
+  .get(`${import.meta.env.VITE_API_URL}/getPosts`)
   .then((response) => {
     setForumPosts(response.data);
   })
@@ -34,7 +34,7 @@ const handlePostSubmit = async() => {
     profileImage:profileImage
   };
   const response = await axios.post(
-    'http://localhost:3001/api/createPost',
+    `${import.meta.env.VITE_API_URL}/createPost`,
     requestData
     );
     setPostMade(true)

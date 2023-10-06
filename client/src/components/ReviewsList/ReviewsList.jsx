@@ -16,7 +16,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
 
   const handleDeleteReview = (reviewID) => {
     axios
-      .delete(`http://localhost:3001/api/deleteReview/${user.uid}/${reviewID}`)
+      .delete(`${import.meta.env.VITE_API_URL}/deleteReview/${user.uid}/${reviewID}`)
       .then((response) => {
         console.log("review Deleted")
         const updatedReviews = reviews.filter((review) => review._id !== reviewID);
@@ -40,7 +40,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
       };
   
       const response = await axios.post(
-        'http://localhost:3001/api/reviewReaction',
+        `${import.meta.env.VITE_API_URL}/reviewReaction`,
         requestData
       );
   
@@ -80,7 +80,7 @@ const ReviewsList = ({ reviews, setReviews, setReaction }) => {
       };
   
       const response = await axios.post(
-        'http://localhost:3001/api/reviewReaction',
+        `${import.meta.env.VITE_API_URL}/reviewReaction`,
         requestData
       );
   

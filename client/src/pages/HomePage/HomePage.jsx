@@ -22,9 +22,11 @@ const HomePage = () => {
 		filteredMovies !== null ? filteredMovies.slice(startIndex, endIndex) : [];
 	const maxPages = Math.ceil((filteredMovies?.length || 0) / moviesPerPage);
 
+console.log(import.meta.env.VITE_API_URL)
+
 	useEffect(() => {
 		axios
-		  .get(`http://localhost:3001/api/moviesByPage/${currentPage}`)
+		  .get(`${import.meta.env.VITE_API_URL}/moviesByPage/${currentPage}`)
 		  .then((response) => {
 			setPagnatedMovies(response.data);
 			setTotalPages(Math.ceil(response.data.length / moviesPerPage));
