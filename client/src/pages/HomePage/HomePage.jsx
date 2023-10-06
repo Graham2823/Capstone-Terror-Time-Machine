@@ -113,9 +113,15 @@ const HomePage = () => {
 						Next Page
 					</button>
 			</div>
+			{filteredMovies === null ?(
 			<div className='page-numbers'>
-  				Page {currentPage} of {totalPages}
+  				Page {currentPage} of {13}
 			</div>
+			):(
+			<div className='page-numbers'>
+  				Page {currentPage} of {maxPages}
+			</div>
+			)}
 		</div>
 	);
 };
