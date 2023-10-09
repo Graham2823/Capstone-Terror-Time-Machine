@@ -65,7 +65,7 @@ const handlePostSubmit = async() => {
         />
         <button id="submit" onClick={handlePostSubmit}>Submit</button>
         </div>
-        <ForumPostList posts={forumPosts.reverse()} setPosts={setForumPosts} />
+        <ForumPostList posts={forumPosts} setPosts={setForumPosts} />
       </div>
     </div>
   );
