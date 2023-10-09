@@ -1,8 +1,9 @@
 nav {
     background: linear-gradient(to right, #6a4ba1, #0f3454);
-    width: 80vw;
+    width: auto;
     height: auto;
     margin: auto;
+    margin-left: -10px;
   }
   
   ul {
