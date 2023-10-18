@@ -17,6 +17,7 @@ import MyProfile from "./pages/MyProfile/MyProfile";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
+  const isSignupOrSignin = location.pathname === "/signup" || location.pathname === "/signin";
 
   const ProtectedRoute = ({ children }) => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -30,7 +31,8 @@ function App() {
     <Router>
       <>
         <h1>Terror Time Machine</h1>
-        <NavBar/>
+        <p className="subHeader">Join horror movie enthusiasts in discussing top horror movies from the 80's!</p>
+        {!isSignupOrSignin && <NavBar />}
         <Routes>
           <Route path="/signup" element={<CreateUser />} />
           <Route path="/signin" element={<SignIn />} />
