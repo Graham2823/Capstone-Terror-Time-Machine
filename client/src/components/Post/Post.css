@@ -25,3 +25,33 @@
   justify-content: flex-start;
   gap: 10px
 }
+
+@media screen and (max-Width: 600px){
+  .post {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    background-color: rgb(114, 114, 114);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-Width: 400px){
+  .post {
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    background-color: rgb(114, 114, 114);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+}
