@@ -39,3 +39,41 @@
 .bio {
   text-align: left;
 }
+
+@media screen and (max-width: 715px){
+  .contact{
+    width: 200px
+  }
+  .contact-textarea {
+    border-radius: 10px;
+    margin-left: 10px;
+    width: 150px;
+  }
+  .contact-input{
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 496px){
+  .profile-picture{
+height: 75px;
+width: 75px;
+  }
+}
+@media screen and (max-width: 390px){
+  .profile-picture{
+height: 50px;
+width: 50px;
+  }
+  .contact{
+    width: 150px
+  }
+  .contact-textarea {
+    border-radius: 10px;
+    margin-left: 10px;
+    width: 125px;
+  }
+  .contact-input{
+    width: 125px;
+  }
+}

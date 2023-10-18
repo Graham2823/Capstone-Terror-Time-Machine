@@ -50,3 +50,9 @@
     background-color: #a90000;
   }
   
+
+  @media screen and (max-width: 400px){
+    .movie-card{
+      width: 100px;
+    }
+  }
