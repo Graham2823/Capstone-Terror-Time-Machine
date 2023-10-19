@@ -54,5 +54,13 @@
   @media screen and (max-width: 400px){
     .movie-card{
       width: 100px;
+      height: 350px;
+    }
+    .movie-title{
+      font-size: .8em;
+    }
+    .movie-card button{
+      margin-left: auto;
+      margin-right: auto;
     }
   }
